@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/new.css')
+  body   
+    .container
+      a(href='/fitness')
+        img(src='/images/icon.png')
+      h1 Add Exercise
+      .exercise-form
+        form(action='/fitness/' + user._id + '/' + date + '/exercise-added' method='POST')
+          div
+          div
+            label.exercise(for='exercise') Exercise
+            input#exercise(type='text', name='exercise')
+          div
+            label.exercise(for='calories') Calories Burned
+            input#calories.number(type='number', name='calories')
+          div
+            input.button(type='submit', value='Submit')

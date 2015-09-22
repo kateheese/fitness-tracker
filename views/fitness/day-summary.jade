@@ -1,0 +1,52 @@
+extends ../layout
+
+block content
+  .journal
+    a(href='/fitness') 
+      img(src='/images/icon.png')
+    h1 Your Daily Summary
+    h2= title
+    table
+      tr
+        th Goal
+        th Food
+        th Exercise
+        th Calories Remaining
+      td= calories
+      td  + 
+      td  - 
+      td  = 
+    h2 Food
+    div.addLink
+      a(href='/fitness/' + user._id + '/' + date + '/add-food') Add Food
+    h3 Breakfast
+    table
+      tr
+        th Food
+        th Calories
+      //- for day in days
+      //-   tr
+      //-     td= addedFood
+      //-     td= addedCalories
+    h3 Lunch
+    table
+      tr
+        th Food
+        th Calories
+    h3 Dinner
+    table
+      tr
+        th Food
+        th Calories
+    h3 Snacks
+    table
+      tr
+        th Food
+        th Calories
+    h2 Exercise
+    div.addLink
+      a(href='/fitness/' + user._id + '/' + date + '/add-exercise') Add Exercise
+    table
+      tr
+        th Exercise
+        th Calories Burned

@@ -1,8 +1,138 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  text-align: center;
+  font-family: Arial;
+  background-image: url('/images/veggie-background.jpg');
+  background-size: cover;
+  font-size: 18px;
+  color: #515151;
+}
+
+img {
+  height: 50px;
+  width: relative;
+  padding-top: 20px;
+}
+
+h1 {
+  font-size: 45px;
+  padding: 20px;
+  color: #9BBB0A;
+}
+
+h2 {
+  font-size: 20px;
+  padding: 20px;
+}
+
+p {
+  font-size: 20px;
+  padding: 20px;
+}
+
+div + div {
+  margin: 20px;
+}
+
+input {
+  font-size: 18px;
+}
+
+select {
+  font-size: 18px;
+}
+
+.container {
+  background-color: white;
+  width: 55%;
+  margin: auto;
+  height: 100vh;
+  box-shadow: 1px 1px 10px 4px rgba(0,0,0,0.75);
+  opacity: 0.85;
+}
+
+.button {
+  background-color: #515151;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  border-style: none;
+}
+
+.delete {
+  background-color: #515151;
+  color: white;
+  font-size: 12px;
+  border-radius: 5px;
+  border-style: none;
+  display: inline;
+}
+
+.inline {
+  display: inline;
+  padding-left: 10px;
+}
+
+.name {
+  width: 200px;
+}
+
+.number {
+  width: 60px;
+}
+
+h3 {
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: auto;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+th {
+  background: #eee;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+  padding: 10px 10px 10px 80px;
 }
 
 a {
-  color: #00B7FF;
+  color: #9BBB0A;
+  font-size: 20px;
+}
+
+.journal {
+  background-color: white;
+  width: 55%;
+  margin: auto;
+  height: relative;
+  box-shadow: 1px 1px 10px 4px rgba(0,0,0,0.75);
+  opacity: 0.85;
+  padding-bottom: 30px;
+}
+
+.day-form {
+  width: 360px;
+  margin: auto;
+}
+
+.day {
+  display: inline-block;
+  width: 120px;
+  text-align: left;
+}
+
+.addLink {
+  padding-bottom: 10px;
 }

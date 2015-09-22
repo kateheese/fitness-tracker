@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  .container
+    a(href='/fitness')
+      img(src='../images/icon.png')
+    h1 Welcome to the Fitness Tracker
+    p This application is a fitness tracker built to track your daily caloric intake and exercise. 
+      |Create a new user or select an existing user below.
+    a(href='/fitness/new') Create New User
+    p Select user:
+
+      for user in users
+          div
+            a(href='/fitness/' + user._id + '/summary')= user.name
+            form.inline(action="/fitness/" + user._id + '/delete', method='POST')
+              input.delete(type="submit", value="Delete")

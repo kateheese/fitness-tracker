@@ -1,0 +1,43 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='../stylesheets/reset.css')
+    link(rel='stylesheet', href='../stylesheets/new.css')
+  body
+    .container
+      a(href='/fitness')
+        img(src='../images/icon.png')
+      h1 New User
+      p Enter in your stats to get started:
+      .form
+        form(action='/fitness' method='POST')
+          div
+          div
+            label.align(for='name') Name
+            input(type='text', name='name' id='name')
+          div
+            label.align(for='age') Age
+            input.number(type='number', name='age' id='age')
+          div
+            label.align(for='sex') Sex
+            select(name='sex' id='sex')
+              option(value='5') Male
+              option(value='-161') Female
+          div
+            label(for='height') Height in cm
+            input.number(type='number', name='height' id='height')
+          div
+            label(for='weight') Weight in kg
+            input.number(type='number', name='weight' id='weight')
+          div
+            label.long(for='activity') Average Level of Activity
+            select(id='activity' name='activity')
+              option(value='1.2') Sedentary
+              option(value='1.375') Lightly Active
+              option(value='1.55') Moderately Active
+              option(value='1.725') Very Active
+              option(value='1.9') Extra Active
+          div
+            input.button(type='submit', value='Submit')
+            a(href="/fitness") cancel

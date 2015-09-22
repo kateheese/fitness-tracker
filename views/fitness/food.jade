@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/reset.css')
+    link(rel='stylesheet', href='/stylesheets/new.css')
+  body   
+    .container
+      a(href='/fitness')
+        img(src='/images/icon.png')
+      h1 Add Food
+      .food-form
+        form(action='/fitness/' + user._id + '/' + date + '/food-added' method='POST')
+          div
+          div
+            label.food(for='meal') Meal
+            select(id='meal' name='meal')
+              option(value='breakfast') Breakfast
+              option(value='lunch') Lunch
+              option(value='dinner') Dinner
+              option(value='snack') Snack
+          div
+            label.food(for='food') Food
+            input#food(type='text', name='food')
+          div
+            label.food(for='calories') Calories
+            input#calories.number(type='number', name='calories')
+          div
+            input.button(type='submit', value='Submit')
