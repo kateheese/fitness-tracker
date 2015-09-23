@@ -2,7 +2,7 @@ extends ../layout
 
 block content  
   .container
-    a(href='/fitness')
+    a(href='/fitness/')
       img(src='/images/icon.png')
     h1 Summary
     h2 Daily Calorie Goal:
@@ -15,7 +15,7 @@ block content
         div
         div
           label.day(for='date') Add New Day
-          input(type='date', name='date' id='date')
+          input(type='date' required name='date' id='date')
         div
           input.button(type='submit', value='Add')
     if days
@@ -24,3 +24,5 @@ block content
           for day in days
             div
               a(href='/fitness/' + user._id + '/' + day.date)= day.date
+              form.inline(action='/fitness/' + user._id + '/' + day.date + '/delete-day' method='POST')
+                input.delete(type="submit", value="Delete")

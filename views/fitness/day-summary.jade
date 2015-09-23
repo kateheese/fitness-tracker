@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .journal
-    a(href='/fitness') 
+    a(href='/fitness/' + user._id + '/summary') 
       img(src='/images/icon.png')
     h1 Your Daily Summary
     h2= title
@@ -12,10 +12,10 @@ block content
         th Food
         th Exercise
         th Calories Remaining
-      td= calories
-      td  + 
-      td  - 
-      td  = 
+      td= goal
+      td  - #{gained}
+      td  + #{lost}
+      td  = #{remaining}
     h2 Food
     div.addLink
       a(href='/fitness/' + user._id + '/' + date + '/add-food') Add Food
@@ -24,25 +24,43 @@ block content
       tr
         th Food
         th Calories
-      //- for day in days
-      //-   tr
-      //-     td= addedFood
-      //-     td= addedCalories
-    h3 Lunch
-    table
-      tr
-        th Food
-        th Calories
-    h3 Dinner
-    table
-      tr
-        th Food
-        th Calories
-    h3 Snacks
-    table
-      tr
-        th Food
-        th Calories
+      if foods
+        for meal in foods
+          tr
+            td= meal.food
+              form.inline(action='/fitness/' + user._id + '/' + date + '/' + meal.food + '/delete-food' method='POST')
+                input.delete(type="submit", value="Delete")
+            td= meal.calories
+    //- h3 Lunch
+    //- table
+    //-   tr
+    //-     th Food
+    //-     th Calories
+    //-   if lunch
+    //-     for elem in lunch
+    //-       tr
+    //-         td= elem.food
+    //-         td= elem.calories
+    //- h3 Dinner
+    //- table
+    //-   tr
+    //-     th Food
+    //-     th Calories
+    //-   if dinner
+    //-     for elem in dinner
+    //-       tr
+    //-         td= elem.food
+    //-         td= elem.calories
+    //- h3 Snacks
+    //- table
+    //-   tr
+    //-     th Food
+    //-     th Calories
+    //-   if snack
+    //-     for elem in snack
+    //-       tr
+    //-         td= elem.food
+    //-         td= elem.calories
     h2 Exercise
     div.addLink
       a(href='/fitness/' + user._id + '/' + date + '/add-exercise') Add Exercise
@@ -50,3 +68,10 @@ block content
       tr
         th Exercise
         th Calories Burned
+      if exercises
+        for elem in exercises
+          tr
+            td= elem.exercise
+              form.inline(action='/fitness/' + user._id + '/' + date + '/' + elem.exercise + '/delete-exercise' method='POST')
+                input.delete(type="submit", value="Delete")
+            td= elem.calories

@@ -62,9 +62,7 @@ router.post('/fitness/:id/update', function(req, res, next) {
 
 router.post('/fitness/:id/day-added', function(req, res, next) {
   userCollection.updateById(req.params.id, { $push: {
-    days: { date: req.body.date,
-            foods: [],
-            exercise: [] }
+    days: { date: req.body.date }
   }}, function (err, record){
       res.redirect('/fitness/' + req.params.id + '/' + req.body.date);
     });
@@ -75,8 +73,13 @@ router.get('/fitness/:id/:date', function(req, res, next) {
     res.render('fitness/day-summary', {
       title: calories.dateFixer(req.params.date),
       user: record,
+      foods: calories.foodSeparator(record.days,req.params.date),
+      gained: calories.gained(calories.foodSeparator(record.days,req.params.date)),
+      lost: calories.lost(calories.exerciseSeparator(record.days,req.params.date)),
+      remaining: calories.remaining(calories.calculateCalories(record.weight,record.height,record.age,record.sex,record.activity),calories.gained(calories.foodSeparator(record.days,req.params.date)),calories.lost(calories.exerciseSeparator(record.days,req.params.date))),
+      exercises: calories.exerciseSeparator(record.days,req.params.date),
       date: req.params.date,
-      calories: calories.calculateCalories(record.weight,record.height,record.age,record.sex,record.activity)
+      goal: calories.calculateCalories(record.weight,record.height,record.age,record.sex,record.activity)
     });
   });
 });
@@ -92,13 +95,13 @@ router.get('/fitness/:id/:date/add-food', function(req, res, next) {
 });
 
 router.post('/fitness/:id/:date/food-added', function(req, res, next) {
-  userCollection.update({ date: req.params.date }, { $push: {
-    foods: { meal: req.body.meal,
-             food: req.body.food,
-             calories: req.body.calories }
-  }}, function (err, record){
+  userCollection.update ({_id: req.params.id, 'days.date': req.params.date}, 
+    {$push: {'days.$.foods': { meal: req.body.meal,
+                               food: req.body.food,
+                               calories: req.body.calories
+    }}}, function (err, record){
       res.redirect('/fitness/' + req.params.id + '/' + req.params.date);
-    });
+  });
 });
 
 router.get('/fitness/:id/:date/add-exercise', function(req, res, next) {
@@ -112,10 +115,10 @@ router.get('/fitness/:id/:date/add-exercise', function(req, res, next) {
 });
 
 router.post('/fitness/:id/:date/exercise-added', function(req, res, next) {
-  userCollection.update({ date: req.params.date }, { $push: {
-    exercises: { exercise: req.body.exercise,
-                 calories: req.body.calories }
-  }}, function (err, record){
+  userCollection.update({ _id: req.params.id, 'days.date': req.params.date }, 
+    { $push: {'days.$.exercises': { exercise: req.body.exercise,
+                                    calories: req.body.calories
+  }}}, function (err, record){
       res.redirect('/fitness/' + req.params.id + '/' + req.params.date);
     });
 });
@@ -124,6 +127,30 @@ router.post('/fitness/:id/delete', function(req, res, next) {
   userCollection.remove({_id: req.params.id}, function (err, record) {
     res.redirect('/fitness');
   });
+});
+
+router.post('/fitness/:id/:date/delete-day', function(req, res, next) {
+  userCollection.updateById(req.params.id, { $pull: {
+    days: { date: req.params.date }
+  }}, function (err, record) {
+    res.redirect('/fitness/' + req.params.id + '/summary');
+  });
+});
+
+router.post('/fitness/:id/:date/:food/delete-food', function(req, res, next) {
+  userCollection.update ({_id: req.params.id, 'days.date': req.params.date}, 
+    {$pull: {'days.$.foods': { food: req.params.food }
+    }}, function (err, record){
+      res.redirect('/fitness/' + req.params.id + '/' + req.params.date);
+  });
+});
+
+router.post('/fitness/:id/:date/:exercise/delete-exercise', function(req, res, next) {
+  userCollection.update({ _id: req.params.id, 'days.date': req.params.date }, 
+    { $pull: {'days.$.exercises': { exercise: req.params.exercise }
+  }}, function (err, record){
+      res.redirect('/fitness/' + req.params.id + '/' + req.params.date);
+    });
 });
 
 module.exports = router;

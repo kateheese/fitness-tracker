@@ -6,7 +6,7 @@ html
     link(rel='stylesheet', href='/stylesheets/new.css')
   body   
     .container
-      a(href='/fitness')
+      a(href='/fitness/' + user._id + '/' + date)
         img(src='/images/icon.png')
       h1 Add Food
       .food-form
@@ -21,9 +21,10 @@ html
               option(value='snack') Snack
           div
             label.food(for='food') Food
-            input#food(type='text', name='food')
+            input#food(type='text' required name='food')
           div
             label.food(for='calories') Calories
-            input#calories.number(type='number', name='calories')
+            input#calories.number(type='number' required name='calories')
           div
             input.button(type='submit', value='Submit')
+            a(href='/fitness/' + user._id + '/' + date) cancel

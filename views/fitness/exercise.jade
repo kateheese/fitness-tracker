@@ -6,7 +6,7 @@ html
     link(rel='stylesheet', href='/stylesheets/new.css')
   body   
     .container
-      a(href='/fitness')
+      a(href='/fitness/' + user._id + '/' + date)
         img(src='/images/icon.png')
       h1 Add Exercise
       .exercise-form
@@ -14,9 +14,10 @@ html
           div
           div
             label.exercise(for='exercise') Exercise
-            input#exercise(type='text', name='exercise')
+            input#exercise(type='text' required name='exercise')
           div
             label.exercise(for='calories') Calories Burned
-            input#calories.number(type='number', name='calories')
+            input#calories.number(type='number' required name='calories')
           div
             input.button(type='submit', value='Submit')
+            a(href='/fitness/' + user._id + '/' + date) cancel
