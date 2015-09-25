@@ -19,9 +19,11 @@ router.post('/fitness', function(req, res, next) {
     name: req.body.name,
     age: req.body.age,
     sex: req.body.sex,
-    height: req.body.height,
+    feet: req.body.feet,
+    inches: req.body.inches,
     weight: req.body.weight,
-    activity: req.body.activity
+    activity: req.body.activity,
+    goal: req.body.goal
   }, function (err, record) {
     res.redirect('/fitness/' + record._id + '/summary');
   });
@@ -33,7 +35,7 @@ router.get('/fitness/:id/summary', function(req, res, next) {
       title: 'Summary',
       user: record,
       days: record.days,
-      calories: calories.calculateCalories(record.weight,record.height,record.age,record.sex,record.activity)
+      calories: calories.calculateCalories(record.weight,record.feet,record.inches,record.age,record.sex,record.activity,record.goal)
     });
   });
 });
@@ -48,14 +50,16 @@ router.get('/fitness/:id/edit', function(req, res, next) {
 });
 
 router.post('/fitness/:id/update', function(req, res, next) {
-  userCollection.updateById(req.params.id, {
+  userCollection.updateById(req.params.id, { $set: {
     name: req.body.name,
     age: req.body.age,
     sex: req.body.sex,
-    height: req.body.height,
+    feet: req.body.feet,
+    inches: req.body.inches,
     weight: req.body.weight,
-    activity: req.body.activity
-  }, function (err, record){
+    activity: req.body.activity,
+    goal: req.body.goal
+  }}, function (err, record){
       res.redirect('/fitness/' + req.params.id + '/summary');
     });
 });
@@ -76,10 +80,10 @@ router.get('/fitness/:id/:date', function(req, res, next) {
       foods: calories.foodSeparator(record.days,req.params.date),
       gained: calories.gained(calories.foodSeparator(record.days,req.params.date)),
       lost: calories.lost(calories.exerciseSeparator(record.days,req.params.date)),
-      remaining: calories.remaining(calories.calculateCalories(record.weight,record.height,record.age,record.sex,record.activity),calories.gained(calories.foodSeparator(record.days,req.params.date)),calories.lost(calories.exerciseSeparator(record.days,req.params.date))),
+      remaining: calories.remaining(calories.calculateCalories(record.weight,record.feet,record.inches,record.age,record.sex,record.activity,record.goal),calories.gained(calories.foodSeparator(record.days,req.params.date)),calories.lost(calories.exerciseSeparator(record.days,req.params.date))),
       exercises: calories.exerciseSeparator(record.days,req.params.date),
       date: req.params.date,
-      goal: calories.calculateCalories(record.weight,record.height,record.age,record.sex,record.activity)
+      goal: calories.calculateCalories(record.weight,record.feet,record.inches,record.age,record.sex,record.activity,record.goal)
     });
   });
 });

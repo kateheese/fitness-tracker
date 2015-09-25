@@ -1,9 +1,12 @@
 extends ../layout
 
-block content  
-  .container
-    a(href='/fitness/')
+block content 
+  header
+    a(href='/fitness')
       img(src='/images/icon.png')
+    h1.header Fitness Tracker
+    a.userHead(href='/fitness/' + user._id + '/summary')= user.name
+  .container
     h1 Summary
     h2 Daily Calorie Goal:
     h1= calories
@@ -14,7 +17,7 @@ block content
       form(action='/fitness/' + user._id + '/day-added' method='POST')
         div
         div
-          label.day(for='date') Add New Day
+          label.day(for='date') Add Day
           input(type='date' required name='date' id='date')
         div
           input.button(type='submit', value='Add')

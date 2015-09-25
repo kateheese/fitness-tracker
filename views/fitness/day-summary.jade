@@ -1,9 +1,12 @@
 extends ../layout
 
 block content
-  .journal
-    a(href='/fitness/' + user._id + '/summary') 
+  header
+    a(href='/fitness')
       img(src='/images/icon.png')
+    h1.header Fitness Tracker
+    a.userHead(href='/fitness/' + user._id + '/summary')= user.name
+  .container
     h1 Your Daily Summary
     h2= title
     table
@@ -13,13 +16,14 @@ block content
         th Exercise
         th Calories Remaining
       td= goal
-      td  - #{gained}
-      td  + #{lost}
-      td  = #{remaining}
-    h2 Food
+      td.big
+        img.minus(src='/images/minus.png')
+        |#{gained}
+      td + #{lost}
+      td= remaining
+    h3 Food
     div.addLink
       a(href='/fitness/' + user._id + '/' + date + '/add-food') Add Food
-    h3 Breakfast
     table
       tr
         th Food
@@ -31,40 +35,10 @@ block content
               form.inline(action='/fitness/' + user._id + '/' + date + '/' + meal.food + '/delete-food' method='POST')
                 input.delete(type="submit", value="Delete")
             td= meal.calories
-    //- h3 Lunch
-    //- table
-    //-   tr
-    //-     th Food
-    //-     th Calories
-    //-   if lunch
-    //-     for elem in lunch
-    //-       tr
-    //-         td= elem.food
-    //-         td= elem.calories
-    //- h3 Dinner
-    //- table
-    //-   tr
-    //-     th Food
-    //-     th Calories
-    //-   if dinner
-    //-     for elem in dinner
-    //-       tr
-    //-         td= elem.food
-    //-         td= elem.calories
-    //- h3 Snacks
-    //- table
-    //-   tr
-    //-     th Food
-    //-     th Calories
-    //-   if snack
-    //-     for elem in snack
-    //-       tr
-    //-         td= elem.food
-    //-         td= elem.calories
-    h2 Exercise
+    h3 Exercise
     div.addLink
       a(href='/fitness/' + user._id + '/' + date + '/add-exercise') Add Exercise
-    table
+    table.bottomex
       tr
         th Exercise
         th Calories Burned

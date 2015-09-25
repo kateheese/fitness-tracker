@@ -1,23 +1,22 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/reset.css')
-    link(rel='stylesheet', href='/stylesheets/new.css')
-  body   
-    .container
-      a(href='/fitness/' + user._id + '/' + date)
-        img(src='/images/icon.png')
-      h1 Add Exercise
-      .exercise-form
-        form(action='/fitness/' + user._id + '/' + date + '/exercise-added' method='POST')
-          div
-          div
-            label.exercise(for='exercise') Exercise
-            input#exercise(type='text' required name='exercise')
-          div
-            label.exercise(for='calories') Calories Burned
-            input#calories.number(type='number' required name='calories')
-          div
-            input.button(type='submit', value='Submit')
-            a(href='/fitness/' + user._id + '/' + date) cancel
+extends ../layout
+
+block content 
+  header
+    a(href='/fitness')
+      img(src='/images/icon.png')
+    h1.header Fitness Tracker 
+    a.userHead(href='/fitness/' + user._id + '/summary')= user.name
+  .container
+    h1 Add Exercise
+    .exercise-form
+      form(action='/fitness/' + user._id + '/' + date + '/exercise-added' method='POST')
+        div
+        div
+          label.exercise(for='exercise') Exercise
+          input(type='text' required name='exercise' id='exercise')
+        div
+          label.exercise(for='calories') Calories Burned
+          input.number(type='number' required name='calories' id='calories')
+        div
+          input.button(type='submit', value='Submit')
+          a.cancel(href='/fitness/' + user._id + '/' + date) cancel

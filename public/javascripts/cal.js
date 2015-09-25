@@ -1,7 +1,21 @@
 var calories = {
-  calculateCalories: function(weight,height,age,sex,activity) {
-    var BMR = 10 * weight + 6.25 * height - 5 * age + Number(sex);
-    return Math.floor(BMR * activity);
+  calculateCalories: function(weight,feet,inches,age,sex,activity,goal) {
+    var BMR = 0;
+    if(sex === 'male') {
+      BMR += (66.47 + (13.75*(weight/2.2)) + (5.0*((feet*12+ parseInt(inches))*2.54)) - (6.75*age));
+    }
+    if(sex === 'female') {
+      BMR += (665.09 + (9.56*(weight/2.2)) + (1.84*((feet*12+ parseInt(inches))*2.54)) - (4.67*age));
+    }
+    if(goal === 'maintain') {
+      return Math.floor(BMR*activity);
+    }
+    if(goal === 'lose') {
+      return Math.floor(BMR*activity) - 500;
+    }
+        if(goal === 'gain') {
+      return Math.floor(BMR*activity) + 500;
+    }
   },
   dateFixer: function(date) {
     var arr = date.split('-');
@@ -9,7 +23,7 @@ var calories = {
     newArr.push(arr[1]);
     newArr.push(arr[2]);
     newArr.push(arr[0]);
-    return newArr.join('/');
+    return newArr.join('.');
   },
   gained: function(food) {
     var count = 0;
@@ -55,32 +69,48 @@ var calories = {
     }
   },
   breakfast: function(arr) {
-    return arr.map(function(obj) {
-      if(obj.meal === 'breakfast') {
-        return obj;
+    var breakfast = [];
+    for(var i = 0; i < arr.length; i++) {
+      if(arr[i].meal === 'breakfast') {
+        breakfast.push(arr[i]);
+      } else {
+        return undefined;
       }
-    })
+    }
+    return breakfast;
   },
   lunch: function(arr) {
-    return arr.map(function(obj) {
-      if(obj.meal === 'lunch') {
-        return obj;
+    var lunch = [];
+    for(var i = 0; i < arr.length; i++) {
+      if(arr[i].meal === 'lunch') {
+        lunch.push(arr[i]);
+      } else {
+        return undefined;
       }
-    })
+    }
+    return lunch;
   },
   dinner: function(arr) {
-    return arr.map(function(obj) {
-      if(obj.meal === 'dinner') {
-        return obj;
+    var dinner = [];
+    for(var i = 0; i < arr.length; i++) {
+      if(arr[i].meal === 'dinner') {
+        dinner.push(arr[i]);
+      } else {
+        return undefined;
       }
-    })
+    }
+    return dinner;
   },
   snack: function(arr) {
-    return arr.map(function(obj) {
-      if(obj.meal === 'snack') {
-        return obj;
+    var snack = [];
+    for(var i = 0; i < arr.length; i++) {
+      if(arr[i].meal === 'snack') {
+        snack.push(arr[i]);
+      } else {
+        return undefined;
       }
-    })
+    }
+    return snack;
   },
   exerciseSeparator: function(arr,day) {
     if(arr) {

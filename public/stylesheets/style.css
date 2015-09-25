@@ -1,31 +1,71 @@
 body {
   text-align: center;
-  font-family: Arial;
-  background-image: url('/images/veggie-background.jpg');
+  font-family: 'VIPER NORA', arial;
+  background: url('/images/veggie-background.jpg') no-repeat center center fixed;
   background-size: cover;
-  font-size: 18px;
-  color: #515151;
+  font-size: 40px;
+  color: #F4E9CB;
+}
+
+header {
+  text-align: left;
+  background-color: white;
+  opacity: 0.85;
+  box-shadow: 1px 1px 10px 4px rgba(0,0,0,0.75);
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+}
+
+.header {
+  display: inline;
+  font-size: 80px;
 }
 
 img {
   height: 50px;
   width: relative;
   padding-top: 20px;
+  display: inline;
+}
+
+.minus {
+  height: 15px;
+  width: relative;
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 80px;
   padding: 20px;
   color: #9BBB0A;
 }
 
 h2 {
-  font-size: 20px;
-  padding: 20px;
+  font-size: 50px;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+h3 {
+  font-size: 50px;
+  padding-top: 30px;
+}
+
+.userHead {
+  font-size: 25px;
+  display: inline;
+  padding: 50px 60px 0 0;
+  float: right;
+  text-decoration: none;
+  color: #A8393E;
+}
+
+.userHead:hover {
+  opacity: 0.7;
 }
 
 p {
-  font-size: 20px;
+  font-size: 30px;
   padding: 20px;
 }
 
@@ -37,29 +77,93 @@ input {
   font-size: 18px;
 }
 
+form {
+  text-align: left;
+}
+
+.form {
+  width: 400px;
+  margin: auto;
+}
+
+.food-form {
+  width: 310px;
+  margin: auto;
+}
+
+.exercise-form {
+  width: 355px;
+  margin: auto;
+}
+
+.align {
+  display: inline-block;
+  width: 75px;
+  text-align: left;
+}
+
+.activity {
+  width: 120px;
+}
+
+.weight {
+  width: 90px;
+}
+
 select {
   font-size: 18px;
 }
 
-.container {
+label {
+  display: inline-block;
+  width: 95px;
+  text-align: left;
+  font-size: 25px;
+}
+
+.food {
+  display: inline-block;
+  width: 75px;
+  text-align: left;
+}
+
+.calories {
+  width: 115px;
+}
+
+.exercise {
+  display: inline-block;
+  width: 115px;
+  text-align: left;
+}
+
+.new {
+  font-size: 18px;
+  margin-right: 10px;
   background-color: white;
-  width: 55%;
-  margin: auto;
-  height: 100vh;
-  box-shadow: 1px 1px 10px 4px rgba(0,0,0,0.75);
-  opacity: 0.85;
+  font-size: 20px;
+}
+
+.container {
+  width: 60%;
+  margin-left: 550px;
+  padding-top: 150px;
 }
 
 .button {
-  background-color: #515151;
+  background-color: #A8393E;
   color: white;
   font-size: 18px;
   border-radius: 5px;
   border-style: none;
 }
 
+.number {
+  width: 60px;
+}
+
 .delete {
-  background-color: #515151;
+  background-color: #A8393E;
   color: white;
   font-size: 12px;
   border-radius: 5px;
@@ -80,10 +184,6 @@ select {
   width: 60px;
 }
 
-h3 {
-  text-align: left;
-}
-
 table {
   border-collapse: collapse;
   width: 80%;
@@ -96,30 +196,26 @@ th, td {
 }
 th {
   background: #eee;
+  font-size: 30px;
+  color: #A8393E;
 }
 
-h2 {
+td {
   font-size: 30px;
 }
 
-h3 {
-  font-size: 20px;
-  padding: 10px 10px 10px 80px;
+.big {
+  width: 140px;
 }
 
 a {
   color: #9BBB0A;
-  font-size: 20px;
+  font-size: 25px;
 }
 
-.journal {
-  background-color: white;
-  width: 55%;
-  margin: auto;
-  height: relative;
-  box-shadow: 1px 1px 10px 4px rgba(0,0,0,0.75);
-  opacity: 0.85;
-  padding-bottom: 30px;
+.cancel {
+  color: #9BBB0A;
+  margin-left: 10px;
 }
 
 .day-form {
@@ -135,4 +231,18 @@ a {
 
 .addLink {
   padding-bottom: 10px;
+  margin-left: 90px;
+  text-align: left;
+}
+
+.bottomex {
+  margin-bottom: 40px;
+}
+
+.user {
+  text-decoration: none;
+}
+
+.user:hover {
+  color: #B2CA6A;
 }

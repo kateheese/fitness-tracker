@@ -1,42 +1,48 @@
-doctype html
-html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/reset.css')
-    link(rel='stylesheet', href='/stylesheets/new.css')
-  body
-    .container
-      a(href='/fitness/' + user._id + '/summary')
-        img(src='/images/icon.png')
-      h1 Edit User Information
-      .form
-        form(action='/fitness/' + user._id + "/update" method='POST')
-          div
-          div
-            label.align(for='name') Name
-            input(type='text', name='name' id='name' value=user.name)
-          div
-            label.align(for='age') Age
-            input.number(type='number', name='age' id='age' value=user.age)
-          div
-            label.align(for='sex') Sex
-            select(name='sex' id='sex')
-              option(value='5' selected=(user.sex=='5' ? "selected" : undefined)) Male
-              option(value='-161' selected=(user.sex=='-161' ? "selected" : undefined)) Female
-          div
-            label(for='height') Height in cm
-            input.number(type='number', name='height' id='height' value=user.height)
-          div
-            label(for='weight') Weight in kg
-            input.number(type='number', name='weight' id='weight' value=user.weight)
-          div
-            label.long(for='activity') Average Level of Activity
-            select(id='activity' name='activity')
-              option(value='1.2' selected=(user.activity=='1.2' ? "selected" : undefined)) Sedentary
-              option(value='1.375' selected=(user.activity=='1.375' ? "selected" : undefined)) Lightly Active
-              option(value='1.55' selected=(user.activity=='1.55' ? "selected" : undefined)) Moderately Active
-              option(value='1.725' selected=(user.activity=='1.725' ? "selected" : undefined)) Very Active
-              option(value='1.9' selected=(user.activity=='1.9' ? "selected" : undefined)) Extra Active
-          div
-            input.button(type='submit', value='Submit')
-            a(href='/fitness/' + user._id + '/summary') cancel
+extends ../layout
+
+block content
+  header
+    a(href='/fitness')
+      img(src='/images/icon.png')
+    h1.header Fitness Tracker
+    a.userHead(href='/fitness/' + user._id + '/summary')= user.name
+  .container
+    h1 Edit User Information
+    .form
+      form(action='/fitness/' + user._id + "/update" method='POST')
+        div
+        div
+          label.align(for='name') Name
+          input(type='text', name='name' id='name' value=user.name)
+        div
+          label.align(for='age') Age
+          input.number(type='number', name='age' id='age' value=user.age)
+        div
+          label.align(for='sex') Sex
+          select.new(name='sex' id='sex')
+            option(value='male' selected=(user.sex=='male' ? "selected" : undefined)) Male
+            option(value='female' selected=(user.sex=='female' ? "selected" : undefined)) Female
+        div
+          label(for='height') Height
+          input.number(type='number', name='feet' id='height' value=user.feet)
+          input.number(type='number', name='inches' value=user.inches)
+        div
+          label(for='weight') Weight
+          input.number(type='number', name='weight' id='weight' value=user.weight)
+        div
+          label.activity(for='activity') Average Level of Activity
+          select.new(id='activity' name='activity')
+            option(value='1.2' selected=(user.activity=='1.2' ? "selected" : undefined)) Sedentary
+            option(value='1.375' selected=(user.activity=='1.375' ? "selected" : undefined)) Lightly Active
+            option(value='1.55' selected=(user.activity=='1.55' ? "selected" : undefined)) Moderately Active
+            option(value='1.725' selected=(user.activity=='1.725' ? "selected" : undefined)) Very Active
+            option(value='1.9' selected=(user.activity=='1.9' ? "selected" : undefined)) Extra Active
+        div
+          label.long(for='goal') Weight Goal
+          select.new(id='goal' name='goal')
+            option(value='lose' selected=(user.goal=='lose' ? "selected" : undefined)) Lose Weight
+            option(value='maintain' selected=(user.goal=='maintain' ? "selected" : undefined)) Maintain Weight
+            option(value='gain' selected=(user.goal=='gain' ? "selected" : undefined)) Gain Weight
+        div
+          input.button(type='submit', value='Submit')
+          a.cancel(href='/fitness/' + user._id + '/summary') cancel
