@@ -68,50 +68,6 @@ var calories = {
       return [];
     }
   },
-  breakfast: function(arr) {
-    var breakfast = [];
-    for(var i = 0; i < arr.length; i++) {
-      if(arr[i].meal === 'breakfast') {
-        breakfast.push(arr[i]);
-      } else {
-        return undefined;
-      }
-    }
-    return breakfast;
-  },
-  lunch: function(arr) {
-    var lunch = [];
-    for(var i = 0; i < arr.length; i++) {
-      if(arr[i].meal === 'lunch') {
-        lunch.push(arr[i]);
-      } else {
-        return undefined;
-      }
-    }
-    return lunch;
-  },
-  dinner: function(arr) {
-    var dinner = [];
-    for(var i = 0; i < arr.length; i++) {
-      if(arr[i].meal === 'dinner') {
-        dinner.push(arr[i]);
-      } else {
-        return undefined;
-      }
-    }
-    return dinner;
-  },
-  snack: function(arr) {
-    var snack = [];
-    for(var i = 0; i < arr.length; i++) {
-      if(arr[i].meal === 'snack') {
-        snack.push(arr[i]);
-      } else {
-        return undefined;
-      }
-    }
-    return snack;
-  },
   exerciseSeparator: function(arr,day) {
     if(arr) {
       for(var i = 0; i < arr.length; i++) {
