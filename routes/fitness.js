@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('monk')('localhost/fitness-tracker');
+var db = require('monk')('mongodb://heroku_xx8dbrr8:3eukb4jonfmoo14p7kb7p5dfh1@ds051943.mongolab.com:51943/heroku_xx8dbrr8');
 var userCollection = db.get('users');
 var calories = require('../public/javascripts/cal.js');
 
