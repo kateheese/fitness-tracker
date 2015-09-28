@@ -21,6 +21,7 @@ block content
         |#{gained}
       td + #{lost}
       td= remaining
+    <progress max=#{total} value=#{gained}></progress>
     h3 Food
     div.addLink
       a(href='/fitness/' + user._id + '/' + date + '/add-food') Add Food

@@ -53,6 +53,9 @@ var calories = {
   remaining: function(goal,food,exercise) {
     return parseInt(goal) - parseInt(food) + parseInt(exercise);
   },
+  total: function(goal,lost) {
+    return parseInt(goal) + parseInt(lost);
+  },
   foodSeparator: function(arr,day) {
     if(arr) {
       for(var i = 0; i < arr.length; i++) {

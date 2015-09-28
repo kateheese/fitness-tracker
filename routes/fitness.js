@@ -81,6 +81,7 @@ router.get('/fitness/:id/:date', function(req, res, next) {
       gained: calories.gained(calories.foodSeparator(record.days,req.params.date)),
       lost: calories.lost(calories.exerciseSeparator(record.days,req.params.date)),
       remaining: calories.remaining(calories.calculateCalories(record.weight,record.feet,record.inches,record.age,record.sex,record.activity,record.goal),calories.gained(calories.foodSeparator(record.days,req.params.date)),calories.lost(calories.exerciseSeparator(record.days,req.params.date))),
+      total: calories.total(calories.calculateCalories(record.weight,record.feet,record.inches,record.age,record.sex,record.activity,record.goal),calories.lost(calories.exerciseSeparator(record.days,req.params.date))),
       exercises: calories.exerciseSeparator(record.days,req.params.date),
       date: req.params.date,
       goal: calories.calculateCalories(record.weight,record.feet,record.inches,record.age,record.sex,record.activity,record.goal)
